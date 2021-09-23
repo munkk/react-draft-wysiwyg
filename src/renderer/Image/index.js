@@ -19,8 +19,24 @@ const getImageComponent = (config) =>
     };
 
     componentDidMount() {
+      this.applyAlignment();
+    }
+
+    applyAlignment() {
       const alignment = config.imageConfig?.imageAlignment;
-      alignment && this[`setEntityAlignment${capitalize(alignment)}`]();
+      switch (alignment) {
+        case "left": {
+          return this.setEntityAlignmentLeft();
+        }
+        case "center": {
+          return this.setEntityAlignmentCenter();
+        }
+        case "right": {
+          return this.setEntityAlignmentRight();
+        }
+        default:
+          return null;
+      }
     }
 
     setEntityAlignmentLeft: Function = (): void => {
@@ -90,7 +106,7 @@ const getImageComponent = (config) =>
     render(): Object {
       const { block, contentState } = this.props;
       const { hovered } = this.state;
-      const { isReadOnly, isImageAlignmentEnabled, imageAlignment } = config;
+      const { isReadOnly, isImageAlignmentEnabled } = config;
       const entity = contentState.getEntity(block.getEntityAt(0));
       const { src, alignment, height, width, alt } = entity.getData();
 
