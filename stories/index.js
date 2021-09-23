@@ -48,9 +48,6 @@ storiesOf("FloatingToolbar", module).add("story", () => <FloatingToolbar />);
 storiesOf("ImageUpload and Alt attribute", module).add("story", () => (
   <ImageUpload />
 ));
-storiesOf("CROWD / ImageAlignment", module).add("story", () => (
-  <ImageAlignment />
-));
 storiesOf("Image as data URI and preview", module).add("story", () => (
   <ImageDataURI />
 ));

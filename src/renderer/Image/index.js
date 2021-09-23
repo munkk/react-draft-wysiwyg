@@ -5,8 +5,6 @@ import classNames from "classnames";
 import Option from "../../components/Option";
 import "./styles.css";
 
-const capitalize = (str) => str.replace(/\b\w/g, (l) => l.toUpperCase());
-
 const getImageComponent = (config) =>
   class Image extends Component {
     static propTypes: Object = {
@@ -17,27 +15,6 @@ const getImageComponent = (config) =>
     state: Object = {
       hovered: false,
     };
-
-    componentDidMount() {
-      this.applyAlignment();
-    }
-
-    applyAlignment() {
-      const alignment = config.imageConfig?.imageAlignment;
-      switch (alignment) {
-        case "left": {
-          return this.setEntityAlignmentLeft();
-        }
-        case "center": {
-          return this.setEntityAlignmentCenter();
-        }
-        case "right": {
-          return this.setEntityAlignmentRight();
-        }
-        default:
-          return null;
-      }
-    }
 
     setEntityAlignmentLeft: Function = (): void => {
       this.setEntityAlignment("left");
@@ -115,9 +92,9 @@ const getImageComponent = (config) =>
           onMouseEnter={this.toggleHovered}
           onMouseLeave={this.toggleHovered}
           className={classNames("rdw-image-alignment", {
-            "rdw-image-left": alignment === "left",
+            "rdw-image-left": !alignment || alignment === "left",
             "rdw-image-right": alignment === "right",
-            "rdw-image-center": !alignment || alignment === "none",
+            "rdw-image-center": alignment === "center",
           })}
         >
           <span className="rdw-image-imagewrapper">

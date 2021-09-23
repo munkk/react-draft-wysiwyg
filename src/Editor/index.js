@@ -50,9 +50,6 @@ class WysiwygEditor extends Component {
       {
         isReadOnly: this.isReadOnly,
         isImageAlignmentEnabled: this.isImageAlignmentEnabled,
-        imageConfig: {
-          imageAlignment: props.toolbar?.image?.imageAlignment,
-        },
         getEditorState: this.getEditorState,
         onChange: this.onChange,
       },
